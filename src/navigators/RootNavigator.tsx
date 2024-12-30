@@ -8,14 +8,18 @@ import AuthNavigation from './AuthNavigator';
 
 export type RootStackParamList = {
   Home: undefined;
+  Auth: undefined;
 };
 
 function RootNavigator() {
   const Stack = createStackNavigator<RootStackParamList>();
-
+  const isLoggedIn = false;
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      initialRouteName={isLoggedIn ? 'Home' : 'Auth'}
+      screenOptions={{headerShown: false}}>
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Auth" component={AuthNavigation} />
     </Stack.Navigator>
   );
 }
